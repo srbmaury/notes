@@ -33,7 +33,7 @@ window.onload = () =>{
 
 add_note.addEventListener('click', ()=>{
     // localStorage.clear();
-    let currTime = new Date();
+    let currTime = String(new Date());
     let textValue = write_note.value;
 
     let times = localStorage.getItem('times');
@@ -46,7 +46,7 @@ add_note.addEventListener('click', ()=>{
 
     if(tasks === null){
         let newTime = [];
-        newTime.push(String(currTime));
+        newTime.push(currTime);
         localStorage.setItem('times',JSON.stringify(newTime));
 
         let newTask = [];
@@ -54,7 +54,7 @@ add_note.addEventListener('click', ()=>{
         localStorage.setItem('tasks',JSON.stringify(newTask));
     }
     else{
-        times.push(String(currTime));
+        times.push(currTime);
         localStorage.setItem('times',JSON.stringify(times));
 
         tasks.push(textValue);
