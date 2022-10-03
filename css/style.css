@@ -82,3 +82,15 @@ hr{
 #zero-notes{
     color: grey;
 }
+
+@media only screen and (max-width:600px){
+    nav li{
+        font-size: 15px;
+    }
+}
+@media only screen and (max-width:900px){
+    .container{
+        width:90%;
+        margin-left: 5%;
+    }
+}
