@@ -20,6 +20,10 @@ li{
     font-size: 22px;
     display: inline;
 }
+li a{
+    color: white;
+    text-decoration: none;
+}
 
 #text{
     height:22px;
