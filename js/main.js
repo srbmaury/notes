@@ -5,6 +5,47 @@ let searchButton = document.getElementById('searchButton');
 let text = document.getElementById('text');
 
 let container, i;
+searchButton.addEventListener('click', searchTasks);
+
+
+document.getElementById('hamburger').addEventListener('click',()=>{
+    searchButton = document.getElementById('searchButton');
+    let navList = document.getElementById('nav-list');
+    navList.removeChild(searchButton);
+
+    searchButton = document.createElement('button');
+    searchButton.id = 'searchButton';
+    searchButton.setAttribute('type', 'submit');
+    searchButton.innerHTML = "Search";
+    searchButton.addEventListener('click', searchTasks);
+    navList.appendChild(searchButton);
+
+    let nav = document.getElementsByTagName('nav')[0];
+    let search = document.getElementById('searchButton');
+    let bars = document.getElementsByClassName('bars');
+    if(nav.style.height === '23vh'){
+        search.style.visibility = 'hidden';
+        bars[0].style.transform = "rotate(0deg)";
+        bars[1].style.transform = "rotate(0deg)";
+        bars[0].style.marginTop = "5px";
+        bars[1].style.marginTop = "5px";
+        bars[2].style.visibility = "visible";
+        bars[0].style.position = "relative";
+        bars[1].style.position = "relative";
+        bars[2].style.position = "relative";
+        nav.style.height = '45px';
+    }else{
+        search.style.visibility = "visible";
+        bars[0].style.transform = "rotate(45deg)";
+        bars[1].style.transform = "rotate(-45deg)";
+        bars[0].style.marginTop = "12px";
+        bars[1].style.marginTop = "12px";
+        bars[2].style.visibility = "hidden";
+        bars[0].style.position = "absolute";
+        bars[1].style.position = "absolute";
+        nav.style.height = '23vh';
+    }
+});
 
 window.onload = () =>{
     let times = localStorage.getItem('times');
@@ -113,7 +154,7 @@ function appendTask(textValue, currTime){
     i++;
 }
 
-searchButton.addEventListener('click', ()=>{
+function searchTasks(){
     let heading = document.getElementsByTagName('h1')[1];
     text.value = text.value.toLowerCase();
     heading.innerHTML = `Notes Containg "${text.value}":`;
@@ -131,7 +172,7 @@ searchButton.addEventListener('click', ()=>{
         }
     }
     text.value = "";
-})
+}
 
 document.getElementById('clear-notes').addEventListener('click', ()=>{
     localStorage.clear();
@@ -139,31 +180,3 @@ document.getElementById('clear-notes').addEventListener('click', ()=>{
     zero_notes.style.display = "visible";
 })
 
-document.getElementById('hamburger').addEventListener('click',()=>{
-    console.log("Running");
-    let nav = document.getElementsByTagName('nav')[0];
-    let search = document.getElementById('searchButton');
-    let bars = document.getElementsByClassName('bars');
-    if(nav.style.height === '23vh'){
-        search.style.visibility = 'hidden';
-        bars[0].style.transform = "rotate(0deg)";
-        bars[1].style.transform = "rotate(0deg)";
-        bars[0].style.marginTop = "5px";
-        bars[1].style.marginTop = "5px";
-        bars[2].style.visibility = "visible";
-        bars[0].style.position = "relative";
-        bars[1].style.position = "relative";
-        bars[2].style.position = "relative";
-        nav.style.height = '5vh';
-    }else{
-        search.style.visibility = "visible";
-        bars[0].style.transform = "rotate(45deg)";
-        bars[1].style.transform = "rotate(-45deg)";
-        bars[0].style.marginTop = "12px";
-        bars[1].style.marginTop = "12px";
-        bars[2].style.visibility = "hidden";
-        bars[0].style.position = "absolute";
-        bars[1].style.position = "absolute";
-        nav.style.height = '23vh';
-    }
-});
