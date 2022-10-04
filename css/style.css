@@ -81,6 +81,7 @@ li a{
     border-radius: 3px;
     padding:5px;
     border: 2px solid rgb(176, 179, 181);
+    resize: none;
 }
 
 #add-note, #clear-notes{
