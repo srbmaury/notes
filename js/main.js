@@ -159,8 +159,9 @@ function appendTask(textValue, currTime, currId, index, check){
     newdiv.style.marginBottom = "20px";
     newdiv.style.backgroundColor = "rgb(91 169 200)";
     newdiv.style.borderRadius = "0 0 10px 10px";
-    newdiv.style.padding = "15px 5px 5px 10px";
+    newdiv.style.padding = "15px 5px 35px 10px";
     newdiv.id = `task${index}`;
+    newdiv.style.overflowWrap = "break-word";
 
     deletebtn.src = 'images/delete-64.png';
     deletebtn.id = currId;
