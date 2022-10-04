@@ -20,6 +20,7 @@ li{
     font-size: 22px;
     display: inline;
 }
+
 li a{
     color: white;
     text-decoration: none;
@@ -35,6 +36,19 @@ li a{
     height:24px;
     float: right;
     cursor: pointer;
+}
+
+#hamburger{
+    margin-top: 5.5px;
+    visibility: hidden;
+}
+
+.bars{
+    width:30px;
+    height:5px;
+    background-color: #ffffff;
+    margin:5px 3px 0 -8px;
+    border-radius: 3px;
 }
 
 .container{
@@ -86,6 +100,7 @@ li a{
     width:100px;
     background-color: rgb(235, 103, 103);
 }
+
 hr{
     margin: 20px 0;
 }
@@ -102,10 +117,39 @@ hr{
 }
 
 @media only screen and (max-width:600px){
-    nav li{
-        font-size: 15px;
+    ul{
+        width:90%;
     }
-    #aboutButton{
+
+    nav{
+        margin:auto;
+        display: flex;
+        height:5vh;
+        overflow: hidden;
+    }
+
+    nav li{
+        margin-bottom: 5px;
+        display: flex;
+        justify-content: center;
+    }
+
+    #text{
+        width:60vw;
+        float:left;
+        margin-left: 20vw;
+    }
+
+    #searchButton{
+        width:20vw;
+        float:left;
         visibility: hidden;
+        margin-left: 40vw;
+        position: absolute;
+        margin-top:36px;
+    }
+    
+    #hamburger{
+        visibility: visible;
     }
 }
