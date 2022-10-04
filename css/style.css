@@ -124,8 +124,7 @@ hr{
     nav{
         margin:auto;
         display: flex;
-        height:5vh;
-        overflow: hidden;
+        overflow:hidden;
     }
 
     nav li{
@@ -137,16 +136,16 @@ hr{
     #text{
         width:60vw;
         float:left;
-        margin-left: 20vw;
+        margin-left: 13vw;
     }
 
     #searchButton{
-        width:20vw;
-        float:left;
+        float: left;
+        width:45px;
         visibility: hidden;
-        margin-left: 40vw;
+        margin-left: 2vw;
         position: absolute;
-        margin-top:36px;
+        margin-top: 0px;
     }
     
     #hamburger{
