@@ -138,3 +138,32 @@ document.getElementById('clear-notes').addEventListener('click', ()=>{
     window.location.reload();
     zero_notes.style.display = "visible";
 })
+
+document.getElementById('hamburger').addEventListener('click',()=>{
+    console.log("Running");
+    let nav = document.getElementsByTagName('nav')[0];
+    let search = document.getElementById('searchButton');
+    let bars = document.getElementsByClassName('bars');
+    if(nav.style.height === '23vh'){
+        search.style.visibility = 'hidden';
+        bars[0].style.transform = "rotate(0deg)";
+        bars[1].style.transform = "rotate(0deg)";
+        bars[0].style.marginTop = "5px";
+        bars[1].style.marginTop = "5px";
+        bars[2].style.visibility = "visible";
+        bars[0].style.position = "relative";
+        bars[1].style.position = "relative";
+        bars[2].style.position = "relative";
+        nav.style.height = '5vh';
+    }else{
+        search.style.visibility = "visible";
+        bars[0].style.transform = "rotate(45deg)";
+        bars[1].style.transform = "rotate(-45deg)";
+        bars[0].style.marginTop = "12px";
+        bars[1].style.marginTop = "12px";
+        bars[2].style.visibility = "hidden";
+        bars[0].style.position = "absolute";
+        bars[1].style.position = "absolute";
+        nav.style.height = '23vh';
+    }
+});
