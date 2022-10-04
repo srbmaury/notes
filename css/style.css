@@ -38,7 +38,7 @@ li a{
     cursor: pointer;
 }
 
-#hamburger{
+#hamburger, #hamburger2{
     margin-top: 5.5px;
     visibility: hidden;
 }
@@ -149,7 +149,7 @@ hr{
         margin-top: 0px;
     }
     
-    #hamburger{
+    #hamburger, #hamburger2{
         visibility: visible;
     }
 }
