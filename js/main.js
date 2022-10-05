@@ -46,7 +46,8 @@ document.getElementById('hamburger').addEventListener('click',()=>{
     }
 });
 
-window.onload = () =>{
+window.onload = displayTasks;
+function displayTasks(){
     let times = localStorage.getItem('times');
     times = JSON.parse(times);
 
@@ -86,6 +87,7 @@ window.onload = () =>{
     if(displayed === false){
         i = 0;
         count = 0;
+        zero_notes.style.display = "visible";
         localStorage.clear();
         return;
     }
@@ -259,7 +261,9 @@ document.addEventListener('click', (e) =>{
 
         count--;
         if(count === 0){
+            displayTasks();
             window.location.reload();
+            zero_notes.style.display = "visible";
         }
     }
 });

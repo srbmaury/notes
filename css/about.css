@@ -18,3 +18,20 @@ img{
     font-size:x-large;
     width: 50vw;
 }
+
+@media only screen and (max-width:600px){
+    img{
+        width:80vmin;
+        height:80vmin;
+        border-radius: 40vmin;
+        margin: 10vmin;
+    }
+    
+    #intro{
+        margin-top: 0;
+        margin-left: 2vw;
+        overflow-x: ;
+        font-size:x-large;
+        width: 100vw;
+    }
+}
