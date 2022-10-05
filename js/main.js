@@ -214,7 +214,7 @@ function searchTasks(){
         let deletedItems = localStorage.getItem('deletedItems');
         deletedItems = JSON.parse(deletedItems);
 
-        if(deletedItems.includes(String(index)) === true) continue;
+        if(deletedItems !== null && deletedItems.includes(String(index)) === true) continue;
 
         let textCheck = document.getElementById(`task${index}`).innerText.toLowerCase();
         let timeCheck = document.getElementById(`time${index}`).innerText.toLowerCase();
