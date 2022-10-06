@@ -207,7 +207,6 @@ function searchTasks(){
     let heading = document.getElementsByTagName('h1')[1];
     text.value = text.value.toLowerCase();
     
-
     heading.innerHTML = `Notes Containg "${text.value}":`;
     for (let index = 0; index < i; index++) {
 
