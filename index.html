@@ -1,20 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Magic Notes</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/tasks.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+
 <body>
     <nav>
         <ul id="nav-list">
             <li class="list-item appName" style="margin-bottom:4px;">Magic Notes</li>
-            <li class="list-item" ><a href="/notes/index.html">Home</a></li>
+            <li class="list-item"><a href="/notes/index.html">Home</a></li>
             <li class="list-item" id="aboutButton"><a href="/notes/about.html">About Me</a></li>
-            <li class="list-item" id="githubButton"><a href="https://github.com/srbmaury/notes"><i class="fa fa-github" aria-hidden="true"></i> GitHub</a></li>
+            <li class="list-item" id="githubButton"><a href="https://github.com/srbmaury/notes"><i class="fa fa-github"
+                        aria-hidden="true"></i> GitHub</a></li>
             <button type="submit" id="searchButton">Search</button>
             <input type="text" name="text" id="text" placeholder="Search notes">
         </ul>
@@ -33,15 +37,33 @@
             <button type="submit" id="clear-notes">Clear Notes</button>
         </div>
 
-        <hr>
-        <h1>Your Notes</h1>
-        <hr>
-
+        <div>
+            <hr>
+            <h1>Your Notes</h1>
+            <div class="dropdown">
+                <button id="display-order" type="button" id="dropdownMenu2">
+                    Oldest First <i class="arrow down"></i>
+                </button>
+                <div class="dropdown-items">
+                    <button id="oldestFirst" class="dropdown-item" type="button">Oldest First</button>
+                    <button id="newestFirst" class="dropdown-item" type="button">Newest First</button>
+                </div>
+            </div>
+            <hr>
+        </div>
+        <div id="editbox">
+            <h1>Change the Text:</h1>
+            <input type="text" id="toChangeText">
+            <div id="buttons">
+                <button id="changeText">Change</button>
+                <button id="cancel">Cancel</button>
+            </div>
+        </div>
         <div id="zero-notes">
             Nothing to show! Use add a Note section to add notes.
         </div>
     </div>
-    
-    <script src="js/main.js"></script>
+    <script src="js/tmp.js"></script>
 </body>
+
 </html>

@@ -110,10 +110,56 @@ hr{
     color: grey;
 }
 
+.dropdown{
+    float: right;
+}
+
+#display-order{
+    width:110px;
+    height:30px;
+    float: right;
+    cursor: pointer;
+    border: 0;
+    background-color: rgb(160, 136, 136);
+    color: white;
+    border-radius: 3px;
+}
+
+.arrow{
+    margin-left:5px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding:3px;
+}
+
+.down{
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}
+.dropdown-items{
+    display:grid;
+    float: right;
+    position: absolute;
+    margin-top:30px;
+    width:110px;
+    background-color: #ffffff;
+    border: 2px solid rgb(79, 76, 76);
+    border-top: 0ch;
+    border-radius: 0px 0px 5px 5px; 
+}
+
+.dropdown-item{
+    background:none;
+    height: 24px;
+    cursor: pointer;
+    border-style: hidden;
+}
+
 @media only screen and (max-width:900px){
     .container{
         width:90%;
-        margin-left: 5%;
+        margin-left: 4%;
     }
 }
 
