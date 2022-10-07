@@ -34,3 +34,76 @@
     float: right; 
     cursor: pointer;
 }
+
+.checked{
+    margin-left: 20px;
+    zoom: 120%;
+    cursor: pointer;
+    color: white;
+}
+
+#editbox{
+    display: none;
+    width:420px;
+    height:135px;
+    padding:30px;
+    position:fixed;
+    margin:-300px 0 0 170px;
+    border: 3px solid rgb( 156, 150, 211);
+    background-color: rgb(165, 175, 219);
+    border-radius: 5px;
+}
+
+#toChangeText{
+    width:400px;
+    height:30px;
+    display: flex;
+    margin: auto;
+    margin-top:15px;
+    margin-bottom:15px;
+}
+
+#changeText, #cancel{
+    width:15%;
+    height:30px;
+    background-color: blue;
+    border:none;
+    border-radius: 4px;
+    font-size: 18px;  
+    padding:3px;
+    cursor: pointer;
+    color: white;
+    margin-right:16px;
+}
+
+#cancel{
+    background-color: rgb(89, 96, 95);
+}
+#buttons{
+    display: flex;
+    margin: auto;
+    padding-left:8px;
+}
+
+.buttonOnDOM{
+    position: fixed;
+    width:25px;
+    height:25px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+@media only screen and (max-width:600px){
+    #editbox{
+        width:76vw;
+        margin: auto;
+        display: flex;
+        margin-top: -200px;
+    }
+    #toChangeText{
+        width:76vw;
+    }
+    #changeText, #cancel{
+        width:65px;
+    }
+}
