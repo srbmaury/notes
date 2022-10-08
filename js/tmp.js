@@ -269,8 +269,8 @@ function edit(id){
     if(editbox.style.display == "none")
         editbox.style.display = "block";
     else
-        editbox.style.display = "none";
-        
+        return;    
+    blink("task"+id);
     let toChangeText = document.getElementById("toChangeText");
     toChangeText.value = document.getElementById(reqId).innerText;
     document.getElementById("changeText").addEventListener('click',()=>{
@@ -294,8 +294,21 @@ function changeText(reqId, text){
     })
 
     localStorage.setItem('tasks',JSON.stringify(tasks));
+    window.location.reload();
 }
 
 document.getElementById('cancel').addEventListener('click',()=>{
+    window.location.reload();
     editbox.style.display = "none";
 })
+
+function blink(id){
+    let curr_ele = document.getElementById(id);
+    setTimeout(() => {
+        if(curr_ele.style.color !== "black")
+            curr_ele.style.color = "black";
+        else
+            curr_ele.style.color = "white";
+        blink(id);
+    }, 500);
+}
