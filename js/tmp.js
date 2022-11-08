@@ -269,7 +269,9 @@ function edit(id){
     if(editbox.style.display == "none")
         editbox.style.display = "block";
     else
-        return;    
+        return;   
+    document.body.style.overflow = 'hidden';
+     
     blink("task"+id);
     let toChangeText = document.getElementById("toChangeText");
     toChangeText.value = document.getElementById(reqId).innerText;
