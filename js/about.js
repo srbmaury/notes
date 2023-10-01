@@ -48,5 +48,5 @@ intro.innerHTML = `
 <br>
 <br>
 
-<a href="https://srbmaury.github.io/Portfolio_Website/" target="_new">Posrtfolio Website</a>
+<a href="https://srbmaury.github.io/Portfolio_Website/" target="_new">Portfolio Website</a>
 `;
