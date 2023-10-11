@@ -8,20 +8,25 @@
     <title>Magic Notes</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/tasks.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
+    <header>
+
+        <a href="/index.html"> <div class="list-item appName" style="margin-bottom:4px;color:white;font-size:35px;">Magic Notes</div></a>
     <nav>
         <ul id="nav-list">
-            <li class="list-item appName" style="margin-bottom:4px;">Magic Notes</li>
-            <li class="list-item"><a href="/notes/index.html">Home</a></li>
-            <li class="list-item" id="aboutButton"><a href="/notes/about.html">About Me</a></li>
-            <li class="list-item" id="githubButton"><a href="https://github.com/srbmaury/notes"><i class="fa fa-github"
+            
+            <li class="list-item"><a href="/index.html">Home</a></li>
+            <li class="list-item" id="aboutButton"><a href="/about.html" target="_blank">About Me</a></li>
+            <li class="list-item" id="githubButton"><a href="https://github.com/srbmaury/notes" target="_blank"><i class="fa fa-github"
                         aria-hidden="true"></i> GitHub</a></li>
-            <button type="submit" id="searchButton">Search</button>
-            <input type="text" name="text" id="text" placeholder="Search notes">
-        </ul>
+                        <input type="text" name="text" id="text" placeholder="Search notes">
+                        <button type="submit" id="searchButton"><i class="fa-solid fa-search"></i></button>
+            
+        </ul></header>
         <span id="hamburger" style="color:white;">
             <div class="bars"></div>
             <div class="bars"></div>
@@ -29,14 +34,15 @@
         </span>
     </nav>
     <div class="container">
-        <h1>Welcome to Magic Notes</h1>
+        <h1 class="heading">Welcome to Magic Notes</h1>
         <div id="create-note">
-            <div id="add-a-note">Add a Note</div>
-            <textarea name="write-note" id="write-note" cols="10" rows="5"></textarea>
-            <button type="submit" id="add-note">Add Note</button>
-            <button type="submit" id="clear-notes">Clear Notes</button>
-        </div>
-
+                <div class="search-bar" id="add-a-note">
+                    <input type="text" id="write-note" placeholder="add note...." name="q">
+                    <button type="submit" id="add-note"><i class="fa-solid fa-plus"></i></button>
+                    
+                </div>
+                <div class="trashIcon" id="clear-notes">Delete all &nbsp;&nbsp;<i class="fa-solid fa-trash" style="color:black"></i></div>
+            </div>
         <div>
             <hr>
             <h1>Your Notes</h1>
