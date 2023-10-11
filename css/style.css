@@ -3,41 +3,64 @@
     padding:0;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
-
-nav{
-    background-color: rgb(50, 46, 50);
-    height:45px;
-    display: inline-flexbox;
-}
-
-ul{
-    padding-top: 10px;
-}
-
-li{
-    color:white;
-    padding-left:10px;
-    font-size: 22px;
-    display: inline;
-}
-
-li a{
-    color: white;
+li, a ,button{
+    font-family: sans-serif;
+    font-weight: 800;
+    font-size: 16px;
+    color:#edf0f1;
     text-decoration: none;
+    letter-spacing: 1px;
+}
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 10%;
+    background-color:#41CBBF;
+    
+}
+#nav-list{
+    list-style: none;
+}
+#nav-list li{
+    display: inline-block;
+    padding: 0px 20px;
+    color:black;
+}
+#nav-list li a {
+    transition: all 0.3s ease 0s;
+}
+#nav-list li a:hover {
+    color:#0088a9;
 }
 
 #text{
-    height:22px;
-    float: right;
+    background-color: hsl(252,30%,95%);
+    border-radius: 2rem;
+    padding:0.6rem 1rem;
+}
+#text input[type="text"]{
+    background: transparent;
+    width:30vw;
+    margin-left: 1rem;
+    font-size: 0.9rem;
+    color:hsl(252,30%,17%);
 }
 
 #searchButton{
-    margin: 0 5px;
-    height:24px;
-    float: right;
-    cursor: pointer;
+    padding:9px 12px;
+    background-color: rgba(0,136,169,1);
+    border:none;
+    border-radius: 50%;
+    cursor:pointer;
+    transition: all 0.3s ease 0s;
 }
-
+#searchButton:hover{
+    background-color: rgba(0,136,169,0.8);
+}
+body{
+    background-color: #DDE2EE;
+}
 #hamburger, #hamburger2{
     margin-top: 5.5px;
     visibility: hidden;
@@ -50,7 +73,10 @@ li a{
     margin:5px 3px 0 -8px;
     border-radius: 3px;
 }
-
+.heading{
+    text-align: center;
+    font-size: 45px;
+}
 .container{
     width: 50%;
     margin-left: 25%;
@@ -61,46 +87,10 @@ li a{
     margin: 20px 0;
     width: 100%;
     height: fit-content;
-    border-radius: 3px;
-    border: 2px solid rgb(176, 179, 181);
+    border-radius: 20px;
+  
 }
 
-#add-a-note{
-    margin: 10px 40px;
-    font-size: 25px;
-    font-weight: 500;
-}
-
-#write-note{
-    font-size: 22px;
-    margin:auto;
-    width:90%;
-    display:flex;
-    height:fit-content;
-    min-height: 60px;
-    border-radius: 3px;
-    padding:5px;
-    border: 2px solid rgb(176, 179, 181);
-    resize: none;
-}
-
-#add-note, #clear-notes{
-    margin: 10px 15px 10px 40px;
-    height:33px;
-    width:90px;
-    border-radius: 8px;
-    border-style: hidden;
-    background-color: blue;
-    color: white;
-    font-size: 18px;
-    cursor: pointer;
-}
-
-#clear-notes{
-    margin:0px;
-    width:100px;
-    background-color: rgb(235, 103, 103);
-}
 
 hr{
     margin: 20px 0;
@@ -155,7 +145,73 @@ hr{
     cursor: pointer;
     border-style: hidden;
 }
-
+.contain{
+    width:100%;
+    min-height: 100vh;
+    padding:5%;
+    background-color: grey;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+.search-bar{
+    width:100%;
+    max-width:700px;
+    background: rgba(255,255,255,0.9);
+    display: flex;
+    align-items: center;
+    border-radius: 60px;
+    padding:10px 20px;
+    backdrop-filter: blur(4px) saturate(180%);
+}
+.search-bar input{
+    background : transparent;
+    flex:1;
+    border:0;
+    outline: none;
+    padding: 24px 20px;
+    font-size: 22px;
+    color:#000;
+}
+::placeholder{
+    color:#cac7ff;
+}
+.search-bar button i{
+    width: 25px;
+}
+.search-bar button{
+    border:0;
+    border-radius:50%;
+    width:60px;
+    height:60px;
+    background: #58629b;
+    cursor:pointer;
+}
+#add-note:hover{
+    background-color: #164E63;
+    color:#fff;
+    font-weight:900;
+}
+.trashIcon{
+    height: 30px;
+    padding:10px;
+    margin:20px;
+    font-size: 17px;
+    width:15%;
+    border:1px solid red;
+    color:#fff;
+    background-color:  rgb(235, 103, 103);
+    text-align: center;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor:pointer;
+}
+.trashIcon:hover{
+    background-color: red;
+}
 @media only screen and (max-width:900px){
     .container{
         width:90%;
