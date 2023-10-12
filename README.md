@@ -46,9 +46,9 @@ Download the Repository from Github or Clone the Repo
 git clone https://github.com/srbmaury/notes.git
 ```
 
-![notehero](https://github.com/codewithsonyy/notes/assets/114895266/2d25699b-b12d-4bb4-91d7-f7c54fef54ba)
+![magic](https://github.com/codewithsonyy/notes/assets/114895266/2577344c-5fb7-4a95-b357-7495beb3de32)
 
-![notemagic](https://github.com/codewithsonyy/notes/assets/114895266/05bb23a9-6968-4f71-8af5-9fb1371a2d01)
+![note](https://github.com/codewithsonyy/notes/assets/114895266/31ed247b-3e68-4a2d-87b1-f9480dd0214a)
 
 ## Project Status[![](https://raw.githubusercontent.com/aregtech/areg-sdk/master/docs/img/pin.svg)](#project-status)
 
@@ -100,7 +100,4 @@ Feel free to open an issue to discuss it, or directly create a pull request with
 
 Feel free to contact me if you come through any error or want Guide in contribution.
 
-<a href ="http://www.linkedin.com/in/saurabh-maurya-39b04b205/"><img src="https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white" alt="Linkedin"/></a>  
-[![Mail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:srbmaury@gmail.com)
-<br />
-<a href="https://twitter.com/srbmaury" target="blank"><img align="center" src="https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Twitter2_colored_svg-64.png" alt="santdas36" height="40" width="40" style="margin-left: 10px;" /></a>
+<a href ="http://www.linkedin.com/in/saurabh-maurya-39b04b205/"><img src="https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white" alt="Linkedin"/></a> [![Mail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:srbmaury@gmail.com)
