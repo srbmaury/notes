@@ -7,7 +7,7 @@ li, a ,button{
     font-family: sans-serif;
     font-weight: 800;
     font-size: 16px;
-    color:#edf0f1;
+    color:black;
     text-decoration: none;
     letter-spacing: 1px;
 }
@@ -15,10 +15,11 @@ header{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 30px 10%;
-    background-color:#41CBBF;
+    padding: 20px 10%;
+    /* background-color:#4F8FC0; */
     
 }
+
 #nav-list{
     list-style: none;
 }
@@ -37,7 +38,7 @@ header{
 #text{
     background-color: hsl(252,30%,95%);
     border-radius: 2rem;
-    padding:0.6rem 1rem;
+    padding:0.6rem 0.8rem;
 }
 #text input[type="text"]{
     background: transparent;
@@ -59,7 +60,7 @@ header{
     background-color: rgba(0,136,169,0.8);
 }
 body{
-    background-color: #DDE2EE;
+    background-color: whitesmoke;
 }
 #hamburger, #hamburger2{
     margin-top: 5.5px;
