@@ -1,12 +1,13 @@
 *{
     margin:0;
     padding:0;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: 'Montserrat', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
+
 li, a ,button{
-    font-family: sans-serif;
+    font-family: inherit;
     font-weight: 800;
-    font-size: 16px;
+    font-size: 17px;
     color:black;
     text-decoration: none;
     letter-spacing: 1px;
@@ -16,7 +17,7 @@ header{
     justify-content: space-between;
     align-items: center;
     padding: 20px 10%;
-    /* background-color:#4F8FC0; */
+    background-color:gainsboro;
     
 }
 
@@ -106,7 +107,9 @@ hr{
 }
 
 #display-order{
-    width:110px;
+    padding: 0.8rem;
+    font-size: small;
+    width:auto;
     height:30px;
     float: right;
     cursor: pointer;
@@ -129,11 +132,13 @@ hr{
     -webkit-transform: rotate(45deg);
 }
 .dropdown-items{
+    padding: 0.8rem;
+    font-size: small;
     display:grid;
     float: right;
     position: absolute;
     margin-top:30px;
-    width:110px;
+    width:auto;
     background-color: #ffffff;
     border: 2px solid rgb(79, 76, 76);
     border-top: 0ch;
@@ -197,11 +202,11 @@ hr{
     font-weight:900;
 }
 .trashIcon{
-    height: 30px;
-    padding:10px;
+    height: 25px;
+    padding:8px;
     margin:20px;
-    font-size: 17px;
-    width:15%;
+    font-size: 15px;
+    width:16%;
     border:1px solid red;
     color:#fff;
     background-color:  rgb(235, 103, 103);
@@ -213,6 +218,7 @@ hr{
 .trashIcon:hover{
     background-color: red;
 }
+
 @media only screen and (max-width:900px){
     .container{
         width:90%;
