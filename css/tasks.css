@@ -61,19 +61,21 @@
     margin: auto;
     margin-top:15px;
     margin-bottom:15px;
+    padding-left: 5px;
 }
 
 #changeText, #cancel{
-    width:15%;
-    height:30px;
-    background-color: blue;
-    border:none;
-    border-radius: 4px;
-    font-size: 18px;  
-    padding:3px;
-    cursor: pointer;
+    background-color: #4CAF50; /* Green */
+    border: none;
     color: white;
-    margin-right:16px;
+    padding: 15px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 10px;
 }
 
 #cancel{
@@ -82,7 +84,7 @@
 #buttons{
     display: flex;
     margin: auto;
-    padding-left:8px;
+    padding-left: auto;
 }
 
 .buttonOnDOM{
