@@ -231,6 +231,7 @@ function searchTasks(){
 }
 
 document.getElementById('clear-notes').addEventListener('click', ()=>{
+    
     localStorage.clear();
     window.location.reload();
     zero_notes.style.display = "visible";
