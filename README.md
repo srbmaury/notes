@@ -11,8 +11,7 @@
 
   <p align="center">
 
-> **_NOTE:_** The code of main.js has some bugs and it is not in use currently. <br />
-> Notes are stored in local storage
+> Notes are stored in local storage. HTML content is supported in notes for rich formatting.
 
 </p>
 </div>
@@ -28,7 +27,9 @@
 “Taking notes” is something that has long been important as we’re going to need to pass along our thoughts, feedback. Magic Notes is a great way to integrate your action plan with your to-do list, bringing your traditional way of taking notes to a whole new level.
 <br />
 Paste this HTML code above to see the magic:
-https://codepen.io/srbmaury/pen/xxjaxzB
+
+
+`<h1 style="font-family:sans-serif;color:#6c63ff;text-align:center;">Hello, Beautiful World ✨</h1>`
 
 ## Features
 
@@ -37,6 +38,7 @@ https://codepen.io/srbmaury/pen/xxjaxzB
 - Star Important notes
 - Search within notes
 - Sort by newest first and oldest first
+- Support for HTML content in notes for rich text formatting
 
 ### Installation
 

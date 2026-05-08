@@ -1,17 +1,197 @@
-let write_note = document.getElementById('write-note');
+let order = document.getElementById('order');
+let container = document.querySelector('.container');
 let add_note = document.getElementById('add-note');
+let clear_notes = document.getElementById('clear-notes');
+let write_note = document.getElementById('write-note');
 let zero_notes = document.getElementById('zero-notes');
+let oldestFirst = document.getElementById('oldestFirst');
+let newestFirst = document.getElementById('newestFirst');
+let displayOrder = document.getElementById('display-order');
 let searchButton = document.getElementById('searchButton');
-let text = document.getElementById('text');
+let navList = document.getElementById('nav-list');
+let hamburger = document.getElementById('hamburger');
+let dropdownItems = document.querySelector('.dropdown-items');
+let h1 = document.getElementsByTagName('h1')[1];
+let editbox = document.getElementById('editbox');
 
-let container, i, count;
-searchButton.addEventListener('click', searchTasks);
+window.onload = () => {
+    let tasks = localStorage.getItem('tasks');
+    tasks = JSON.parse(tasks);
 
-document.getElementById('hamburger').addEventListener('click',()=>{
-    searchButton = document.getElementById('searchButton');
-    let navList = document.getElementById('nav-list');
+    displayOrder.style.visibility = "hidden";
+    dropdownItems.style.visibility = "hidden";
+    editbox.style.display = "none";
+
+    if(tasks === null || tasks.length === 0) return;
+    
+    let order = localStorage.getItem('order');
+    if(order === null) order = "oldestFirst";
+    
+    if(order == "oldestFirst")
+        displayOrder.innerHTML = `Oldest First <i class="arrow down"></i>`;
+    else
+        displayOrder.innerHTML = `Newest First <i class="arrow down"></i>`;
+    
+    Array.from(tasks).forEach((element) => {
+        addTask(element[0], element[1], element[2], element[3], order);
+    })
+    
+    let important = localStorage.getItem('important');
+    important = JSON.parse(important);
+
+    if(important != null){
+        important.forEach(element =>{
+            markAsImp(element, "onload");
+        })
+    }
+
+    displayOrder.style.visibility = "visible";
+}
+
+add_note.addEventListener('click', ()=>{
+    let date = String(new Date());
+    let time = date.substring(16,24);
+    let textValue = write_note.value;
+    date = date.substring(4,15);
+
+    if(textValue.length === 0) return;
+
+    let tasks = localStorage.getItem('tasks');
+    tasks = JSON.parse(tasks);
+    
+    let order = localStorage.getItem('order');
+    if(order === null) order = "oldestFirst";
+
+    let i = localStorage.getItem('i');
+
+    if(tasks === null){
+        i = 0;
+        tasks = [];
+    }
+
+    let newTask = [date, time, textValue, i];
+    tasks.push(newTask);
+
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+
+    addTask(date, time, textValue, i, order);
+    if(h1.innerText !== "Your Notes")
+        window.location.reload();
+    write_note.value = "";
+    i++;
+    localStorage.setItem('i', i);
+})
+
+function addTask(date, time, textValue, id, order){
+    let textField = document.createElement('div');
+    textField.innerHTML = `<div class="datentime"><span class="date">${date}</span><span class="time">${time}</span><span class="fa fa-star checked" id="-${id}" onclick="markAsImp(this.id)"></span><span><img src="images/edit-2-64.png" class="buttonOnDOM" id="e${id}" onclick="edit(this.id)"></span></div><div class="task" id="task${id}">${textValue}<img src="images/delete-64.png" id="${id}" class="delete" onclick="deleteTask(this.id)"></div>`;
+
+    textField.id = `text-field${id}`;
+
+    if(order === "oldestFirst") {
+        container.appendChild(textField);
+    } else {
+        let firstNote = container.querySelector('[id^="text-field"]');
+        if(firstNote) {
+            container.insertBefore(textField, firstNote);
+        } else {
+            container.appendChild(textField);
+        }
+    }
+
+    if(container.childElementCount !== 5){
+        zero_notes.style.display = "none";
+        displayOrder.style.visibility = "visible";
+    }
+}
+
+function deleteTask(id){
+    let current_task = document.getElementById(`text-field${id}`);
+    container.removeChild(current_task);
+
+    let tasks = localStorage.getItem('tasks');
+    tasks = JSON.parse(tasks);
+
+    let important = localStorage.getItem('important');
+    important = JSON.parse(important);
+
+    if(important != null){
+        for (let index = 0; index < important.length; index++) {
+            if(important[index] == `-${id}`){
+                important.splice(index, 1);
+            }
+        }
+    }
+
+    for (let index = 0; index < tasks.length; index++) {
+        const element = tasks[index][3];
+        if(element == id){
+            tasks.splice(index, 1);
+        }
+    }
+
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+    localStorage.setItem('important', JSON.stringify(important));
+
+    if(container.childElementCount === 5){
+        zero_notes.style.display = "block";
+        displayOrder.style.visibility = "hidden";
+    }
+}
+
+clear_notes.addEventListener('click', ()=>{
+
+    let tasks = localStorage.getItem('tasks');
+    tasks = JSON.parse(tasks);
+
+    zero_notes.style.display = "block";
+    displayOrder.style.visibility = "hidden";
+
+    if(h1.innerText !== "Your Notes")
+        window.location.reload();
+    localStorage.clear();
+
+    if(tasks === null) return;
+    Array.from(tasks).forEach((element) => {
+        let corresponding_elementId = `text-field${element[3]}`;
+        let textField = document.getElementById(corresponding_elementId);
+        container.removeChild(textField);
+    });
+})
+
+displayOrder.addEventListener('click', ()=>{
+    let order = localStorage.getItem('order');
+    if(order === null) order = "oldestFirst";
+
+    if(displayOrder.innerText == "Display Order"){
+        if(order === "oldestFirst")
+            displayOrder.innerHTML = `Oldest First<i class="arrow down"></i>`;
+        else
+            displayOrder.innerHTML = `Newest First<i class="arrow down"></i>`;
+        dropdownItems.style.visibility = "hidden";
+    }
+    else{
+        displayOrder.innerHTML = `Display Order<i class="arrow down"></i>`;
+        dropdownItems.style.visibility = "visible";
+    }
+})
+
+oldestFirst.addEventListener('click',()=>{
+    localStorage.setItem('order', "oldestFirst");
+    displayOrder.innerHTML = "Oldest First";
+    window.location.reload();
+})
+
+newestFirst.addEventListener('click',()=>{
+    localStorage.setItem('order', "newestFirst");
+    displayOrder.innerHTML = "Newest First";
+    window.location.reload();
+})
+
+hamburger.addEventListener('click',()=>{
+    
     navList.removeChild(searchButton);
-
+    
     searchButton = document.createElement('button');
     searchButton.id = 'searchButton';
     searchButton.setAttribute('type', 'submit');
@@ -21,248 +201,122 @@ document.getElementById('hamburger').addEventListener('click',()=>{
 
     let nav = document.getElementsByTagName('nav')[0];
     let search = document.getElementById('searchButton');
-    let bars = document.getElementsByClassName('bars');
+
     if(nav.style.height === '160px'){
         search.style.visibility = 'hidden';
-        bars[0].style.transform = "rotate(0deg)";
-        bars[1].style.transform = "rotate(0deg)";
-        bars[0].style.marginTop = "5px";
-        bars[1].style.marginTop = "5px";
-        bars[2].style.visibility = "visible";
-        bars[0].style.position = "relative";
-        bars[1].style.position = "relative";
-        bars[2].style.position = "relative";
+        hamburger.innerHTML = `<div class="bars" style="transform: rotate(0deg); margin-top: 5px; position: relative;"></div> <div class="bars" style="transform: rotate(0deg); margin-top: 5px; position: relative;"></div> <div class="bars" style="visibility: visible;"></div>`;
         nav.style.height = '45px';
     }else{
         search.style.visibility = "visible";
-        bars[0].style.transform = "rotate(45deg)";
-        bars[1].style.transform = "rotate(-45deg)";
-        bars[0].style.marginTop = "12px";
-        bars[1].style.marginTop = "12px";
-        bars[2].style.visibility = "hidden";
-        bars[0].style.position = "absolute";
-        bars[1].style.position = "absolute";
+        hamburger.innerHTML = ` <div class="bars" style="transform: rotate(45deg); margin-top: 12px; position: absolute;"></div> <div class="bars" style="transform: rotate(-45deg); margin-top: 12px; position: absolute;"></div> <div class="bars" style="visibility: hidden;"></div>`;
         nav.style.height = '160px';
     }
 });
 
-window.onload = displayTasks;
-function displayTasks(){
-    let times = localStorage.getItem('times');
-    times = JSON.parse(times);
+searchButton.addEventListener('click', searchTasks);
+function searchTasks(){
+    let heading = document.getElementsByTagName('h1')[1];
+    
+    text.value = text.value.toLowerCase();
+    heading.innerHTML = `Notes Containing "${text.value}":`;
 
     let tasks = localStorage.getItem('tasks');
-    tasks = JSON.parse(tasks);
-
-    let deletes = localStorage.getItem('deletes');
-    deletes = JSON.parse(deletes);
-
-    let deletedItems = localStorage.getItem('deletedItems');
-    deletedItems = JSON.parse(deletedItems);
-
-    i = localStorage.getItem('i');
-    if(i == null) i = 0;
-
-    count = localStorage.getItem('count');
-    if(count == null) count = 0;
-
-    container = document.createElement('div');
-    container.id = 'all-taks';
-    container.className = 'container';
-
-    document.body.appendChild(container);
-
-    let displayed = false;
-    if(tasks !== null){
-        zero_notes.style.display = "none";
-
-        for (let index = 0; index < tasks.length; index++){
-            if(deletedItems !== null && deletedItems.includes(String(index))) continue;
-            displayed = true;
-
-            appendTask(tasks[index], times[index], deletes[index], index, false);
-        }
-    }
-
-    if(displayed === false){
-        i = 0;
-        count = 0;
-        zero_notes.style.display = "visible";
-        localStorage.clear();
-        return;
-    }
-}
-
-add_note.addEventListener('click', ()=>{
-    // localStorage.clear();
-    let currTime = String(new Date());
-    let textValue = write_note.value;
-    let currId = `delete${i}`;
-
-    let times = localStorage.getItem('times');
-    times = JSON.parse(times);
-
-    let tasks = localStorage.getItem('tasks');
-    tasks = JSON.parse(tasks);
-
-    let deletes = localStorage.getItem('deletes');
-    deletes = JSON.parse(deletes);
-
-    if(textValue.length === 0) return;
-
-    if(tasks === null){
-        let newTime = [];
-        newTime.push(currTime);
-        localStorage.setItem('times',JSON.stringify(newTime));
-
-        let newTask = [];
-        newTask.push(textValue);
-        localStorage.setItem('tasks',JSON.stringify(newTask));
-        
-        let newDelete = [];
-        newDelete.push(currId);
-        localStorage.setItem('deletes',JSON.stringify(newDelete));
-    }
-    else{
-        times.push(currTime);
-        localStorage.setItem('times',JSON.stringify(times));
-
-        tasks.push(textValue);
-        localStorage.setItem('tasks',JSON.stringify(tasks));
-
-        deletes.push(currId);
-        localStorage.setItem('deletes',JSON.stringify(deletes));
-    }
-
-    tasks = localStorage.getItem('tasks');
     tasks = JSON.parse(tasks);
 
     zero_notes.style.display = "none";
-    write_note.value = '';
-
-    appendTask(textValue, currTime, currId, i, true);
-})
-
-function appendTask(textValue, currTime, currId, index, check){
-    if(check) index = i;
-    let newdate = document.createElement('div');
-    let newdiv = document.createElement('div');
-    let deletebtn = document.createElement('img');
-
-    newdate.style.width = "100%";
-    newdate.style.height = "40px";
-    newdate.style.backgroundColor = "skyblue";
-    newdate.style.borderRadius = "10px 10px 0 0";
-    newdate.style.padding = "15px 5px 0px 10px";
-    newdate.id = `id${index}`;
-
-    newdiv.style.width = "100%";
-    newdiv.style.minHeight = "30px";
-    newdiv.style.marginBottom = "20px";
-    newdiv.style.backgroundColor = "rgb(91 169 200)";
-    newdiv.style.borderRadius = "0 0 10px 10px";
-    newdiv.style.padding = "15px 5px 35px 10px";
-    newdiv.id = `task${index}`;
-    newdiv.style.overflowWrap = "break-word";
-
-    deletebtn.src = 'images/delete-64.png';
-    deletebtn.id = currId;
-    deletebtn.style.width = "30px";
-    deletebtn.style.height = "30px";
-    deletebtn.style.zIndex = "1000";
-    deletebtn.style.float = "right";
-    deletebtn.style.cursor = "pointer";
-
-    let newTime = document.createElement('span');
-    newTime.innerHTML = currTime.substring(4,15);
-    newTime.style.fontWeight = "600";
-    newTime.style.fontSize = "25px";
-    newTime.style.color = "#423ae9";
-    newTime.id = `date${index}`;
-    
-    newdate.appendChild(newTime);
-    
-    newTime = document.createElement('span');
-    newTime.innerHTML = currTime.substring(16,24);
-    newTime.style.marginLeft = "10px";
-    newTime.style.fontSize = "15px";
-    newTime.id = `time${index}`;
-    
-    newdate.appendChild(newTime);
-    
-    newdiv.innerHTML = `${textValue}`;
-    
-    container.appendChild(newdate);
-    container.appendChild(newdiv);
-    newdiv.appendChild(deletebtn);
-
-    if(check){
-        i++;
-        count++;
-        localStorage.setItem('i',i);
+    let found = false;
+    if(tasks !== null){
+        tasks.forEach((e) => {
+            document.getElementById(`text-field${e[3]}`).style.display = "block ";
+            let currText = e[2].toLowerCase();
+            if(currText.includes(text.value)){
+                found = true;
+                document.getElementById(`text-field${e[3]}`).style.display = "block ";
+            }else{
+                document.getElementById(`text-field${e[3]}`).style.display = "none";
+            }
+        });
     }
-}
-
-function searchTasks(){
-    let heading = document.getElementsByTagName('h1')[1];
-    text.value = text.value.toLowerCase();
-    
-    heading.innerHTML = `Notes Containg "${text.value}":`;
-    for (let index = 0; index < i; index++) {
-
-        let deletedItems = localStorage.getItem('deletedItems');
-        deletedItems = JSON.parse(deletedItems);
-
-        if(deletedItems !== null && deletedItems.includes(String(index)) === true) continue;
-
-        let textCheck = document.getElementById(`task${index}`).innerText.toLowerCase();
-        let timeCheck = document.getElementById(`time${index}`).innerText.toLowerCase();
-        let dateCheck = document.getElementById(`date${index}`).innerText.toLowerCase();
-
-        if(textCheck.includes(text.value) || timeCheck.includes(text.value) || dateCheck.includes(text.value)){
-            document.getElementById(`id${index}`).style.display = "visible";
-            document.getElementById(`task${index}`).style.display = "visible";
-        }else{
-            document.getElementById(`id${index}`).style.display = "none";
-            document.getElementById(`task${index}`).style.display = "none";
-        }
+    if(!found){
+        zero_notes.innerHTML = "No match found!";
+        zero_notes.style.display = "block";
     }
+    document.querySelector('.dropdown').style.display = "none";
     text.value = "";
 }
 
-document.getElementById('clear-notes').addEventListener('click', ()=>{
-    localStorage.clear();
-    window.location.reload();
-    zero_notes.style.display = "visible";
-})
+function markAsImp(id, time="default"){
+    let star = document.getElementById(id);
+    let important = localStorage.getItem('important');
+    important = JSON.parse(important);
 
-document.addEventListener('click', (e) =>{
-    let elementId = e.target.id;
-    let index = elementId.substring(6,);
-    if (elementId !== '' && elementId.includes('delete')) {
-        let task = document.getElementById(`task${index}`);
-        let date = document.getElementById(`id${index}`);
+    if(important == null) important = [];
 
-        let deletedItems = localStorage.getItem('deletedItems');
-        deletedItems = JSON.parse(deletedItems);
-
-        if(deletedItems === null){
-            let newDeletedItem = [];
-            newDeletedItem.push(index);
-            localStorage.setItem('deletedItems',JSON.stringify(newDeletedItem));
-        }else{
-            deletedItems.push(index);
-            localStorage.setItem('deletedItems',JSON.stringify(deletedItems));
-        }
-
-        task.parentElement.removeChild(task);
-        date.parentElement.removeChild(date);
-
-        count--;
-        if(count === 0){
-            displayTasks();
-            window.location.reload();
-            zero_notes.style.display = "visible";
+    if(time != "onload" && star.style.color == 'yellow'){
+        star.style.color = 'white';
+        for (let index = 0; index < important.length; index++) {
+            if(important[index] == id){
+                important.splice(index, 1);
+            }
         }
     }
-});
+    else{
+        star.style.color = 'yellow';
+        if(time != "onload")
+            important.push(id);
+    }
+
+    localStorage.setItem('important', JSON.stringify(important));
+}
+
+function edit(id){
+    id = id.slice(1,);
+    let reqId = "task"+id;
+    if(editbox.style.display == "none")
+        editbox.style.display = "block";
+    else
+        return;   
+    document.body.style.overflow = 'hidden';
+     
+    blink("task"+id);
+    let toChangeText = document.getElementById("toChangeText");
+    toChangeText.value = document.getElementById(reqId).innerText;
+    document.getElementById("changeText").addEventListener('click',()=>{
+        let text = toChangeText.value;
+        changeText(reqId, text);
+    })
+}
+
+function changeText(reqId, text){
+    document.getElementById(reqId).innerHTML = text;
+    editbox.style.display = "none";
+
+    let tasks = localStorage.getItem('tasks');
+    tasks = JSON.parse(tasks);
+
+    reqId = reqId.slice(4,);
+    Array.from(tasks).forEach((element) => {
+        if(element[3] == reqId){
+            element[2] = text;
+        }
+    })
+
+    localStorage.setItem('tasks',JSON.stringify(tasks));
+    window.location.reload();
+}
+
+document.getElementById('cancel').addEventListener('click',()=>{
+    window.location.reload();
+    editbox.style.display = "none";
+})
+
+function blink(id){
+    let curr_ele = document.getElementById(id);
+    setTimeout(() => {
+        if(curr_ele.style.color !== "black")
+            curr_ele.style.color = "black";
+        else
+            curr_ele.style.color = "white";
+        blink(id);
+    }, 500);
+}
